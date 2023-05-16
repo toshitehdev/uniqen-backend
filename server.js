@@ -1,5 +1,6 @@
 const express = require("express");
 const { ethers } = require("ethers");
+
 const cors = require("cors");
 require("dotenv").config();
 
@@ -47,12 +48,15 @@ app.post("/verify", async (req, res) => {
   const amount = req.body.ids.length;
   const message = req.body.ids;
   const hash = await srcContract.getMessageHash(to, amount, message);
+
   if (idVerified.includes(false)) {
     res.status(400).send({
       message: "id doesn't match",
     });
   } else {
-    const signature = await signer.signMessage(hash);
+    const signature = await signer.signMessage(ethers.getBytes(hash));
+    const verif = await srcContract.verify(to, amount, message, signature);
+    console.log(verif);
     res.send(signature);
   }
 });
