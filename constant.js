@@ -1,4 +1,4 @@
-const srcContractAddress = "0x20382A7E5831d4B55095c8521A63C496E9A5b2F8";
+const srcContractAddress = "0xcBD57772692a0373B9c2296e51d67808A73872B2";
 const srcContractABI = [
   {
     inputs: [
@@ -557,71 +557,9 @@ const srcContractABI = [
     stateMutability: "view",
     type: "function",
   },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256[]",
-        name: "_message",
-        type: "uint256[]",
-      },
-      {
-        internalType: "bytes",
-        name: "signature",
-        type: "bytes",
-      },
-    ],
-    name: "verify",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "pure",
-    type: "function",
-  },
 ];
-const dstContractAddress = "0x13A0A6b31447eEc24845FFAcE37a8DeE3e1e1e7A";
+const dstContractAddress = "0x74F6381E3993Eee42a329CAE27cfD275b0B1bfc2";
 const dstContractABI = [
-  {
-    inputs: [
-      {
-        internalType: "bytes32",
-        name: "commandId",
-        type: "bytes32",
-      },
-      {
-        internalType: "string",
-        name: "sourceChain",
-        type: "string",
-      },
-      {
-        internalType: "string",
-        name: "sourceAddress",
-        type: "string",
-      },
-      {
-        internalType: "bytes",
-        name: "payload",
-        type: "bytes",
-      },
-    ],
-    name: "execute",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
   {
     inputs: [],
     stateMutability: "nonpayable",
@@ -663,6 +601,104 @@ const dstContractABI = [
     type: "event",
   },
   {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "owner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "counter",
+        type: "uint256",
+      },
+    ],
+    name: "MintMany",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: false,
+        internalType: "address",
+        name: "_owner",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
+      },
+    ],
+    name: "Switch",
+    type: "event",
+  },
+  {
+    inputs: [],
+    name: "base_uri",
+    outputs: [
+      {
+        internalType: "string",
+        name: "",
+        type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "contract_owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes32",
+        name: "commandId",
+        type: "bytes32",
+      },
+      {
+        internalType: "string",
+        name: "sourceChain",
+        type: "string",
+      },
+      {
+        internalType: "string",
+        name: "sourceAddress",
+        type: "string",
+      },
+      {
+        internalType: "bytes",
+        name: "payload",
+        type: "bytes",
+      },
+    ],
+    name: "execute",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "bytes32",
@@ -701,112 +737,6 @@ const dstContractABI = [
     type: "function",
   },
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "owner",
-        type: "address",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-      {
-        indexed: true,
-        internalType: "uint256",
-        name: "counter",
-        type: "uint256",
-      },
-    ],
-    name: "MintMany",
-    type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "string",
-        name: "_uri",
-        type: "string",
-      },
-    ],
-    name: "setBaseUri",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_owner",
-        type: "address",
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "id",
-        type: "uint256",
-      },
-    ],
-    name: "Switch",
-    type: "event",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "_sender",
-        type: "address",
-      },
-      {
-        internalType: "address",
-        name: "_recipient",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256",
-      },
-    ],
-    name: "transferBulk",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "base_uri",
-    outputs: [
-      {
-        internalType: "string",
-        name: "",
-        type: "string",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "contract_owner",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
     inputs: [],
     name: "gasService",
     outputs: [
@@ -825,6 +755,19 @@ const dstContractABI = [
     outputs: [
       {
         internalType: "contract IAxelarGateway",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "genesis_address",
+    outputs: [
+      {
+        internalType: "address",
         name: "",
         type: "address",
       },
@@ -921,16 +864,16 @@ const dstContractABI = [
     type: "function",
   },
   {
-    inputs: [],
-    name: "token_counter",
-    outputs: [
+    inputs: [
       {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
+        internalType: "string",
+        name: "_uri",
+        type: "string",
       },
     ],
-    stateMutability: "view",
+    name: "setBaseUri",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -950,6 +893,42 @@ const dstContractABI = [
       },
     ],
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "token_counter",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_sender",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_recipient",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
+    name: "transferBulk",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];

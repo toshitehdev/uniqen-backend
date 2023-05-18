@@ -33,7 +33,7 @@ app.post("/verify", async (req, res) => {
   //read storage
   const tokenOwned = await dstContract.getAddressToIds(req.body.account);
   const tokenIds = tokenOwned.map((item) => ethers.toNumber(item));
-  // console.log(tokenOwned);
+
   //verify req.body against cid
   const idVerified = req.body.ids.map((tokenId) => {
     if (tokenIds.includes(tokenId)) {
@@ -55,8 +55,6 @@ app.post("/verify", async (req, res) => {
     });
   } else {
     const signature = await signer.signMessage(ethers.getBytes(hash));
-    const verif = await srcContract.verify(to, amount, message, signature);
-    console.log(verif);
     res.send(signature);
   }
 });
@@ -65,9 +63,12 @@ app.post("/collections", async (req, res) => {
   try {
     const account = req.body.account;
     const tokenHoldings = await dstContract.getAddressToIds(account);
-
     const uu = tokenHoldings.map((item) => ethers.toNumber(item));
-    res.json(uu);
+    if (tokenHoldings.length < 1) {
+      res.json([]);
+    } else {
+      res.json(uu);
+    }
   } catch (error) {
     res.send(error);
   }
@@ -82,7 +83,7 @@ const eventListener = () => {
       signer
     );
     const tx = await contractSigned.transferBulk(sender, recipient, amount);
-    console.log(tx);
+    console.log(tx.hash);
     const response = await dstProvider.getTransactionReceipt(tx.hash);
     // await response.confirmations();
     // console.log(response);
